@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Notes</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/jquery.dataTables.min.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/dataTables.bootstrap.min.css}" type="text/css" rel="stylesheet"/>
+  </head>
+  <body class="home">
+		<section id="banner">
+			<div class="bg-color">
+			  <header id="header">
+				<div class="container">
+				  <div id="mySidenav" class="sidenav">
+					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+					<a href="/create" th:href="@{/note}">Add Note</a>
+					<a href="/logout" th:href="@{/logout}" type="submit"> <span class="btn btn-danger col-md-12"> Logout </span> </a> 
+					
+				  </div>
+				  <!-- Use any element to open the sidenav -->
+				  <span onclick="openNav()" class="pull-right menu-icon">☰</span>
+				</div>
+			  </header>
+			  
+			</div>
+		</section>
+		<div class="container col-md-12">
+				
+				<div class="col-md-3 leftPanel length highlight"> 
+				
+					<span class="effect">
+
+						<div class="col-md-12 topAlign text-center white">
+							<h1 class="white"><span class="glyphicon glyphicon-trash"></span>Notes</h1>
+							<b class="white">Writing made digital</b>
+						</div>
+					
+					</span>
+				
+				</div>
+				
+				<div class="col-md-7">
+                                    <h1 id="outlook" class="white"><b> NoteBook </b></h1>
+                                                
+						<hr>
+                                    
+                                    <div class="white" th:if="${emptyNote}==true" style="padding-top: 10%">
+                        <h3>Your note library is empty... Add some notes... </h4><br/><br/><br/>
+                        <div class="col-md-offset-3 " style="font-size: 18px; margin-bottom: 200px">
+                              
+                                <a th:href="@{/note}"><input type="submit" class="btn btn-success col-md-4" id="add" value="Add note" /> </a>
+                        </div>
+                       
+                    </div>
+                                                            
+                                    <div th:if="${noteNotEmpty}==true" class="" style="background: lightgray; padding:5px;">                   
+					<table border="0"  class="table table-hover" id="notestable">
+						<thead>
+							<tr>
+								<th class="col-md-1">No.</th>
+								<th class="col-md-7">Notes</th>
+								<th class="">Actions</th>
+							</tr>
+						</thead>
+						<tbody id="body">
+							<tr th:each = "note, iterStat:${newList}">
+								<td  th:text="${iterStat.count}">    </td>
+								<td>  
+									<div>
+										<h4 th:text="${note.title}"> </h4>
+										<p th:text="${note.content}"> </p>
+									</div>
+								</td>
+                                <td>
+										<a href="/delete/1" th:href="@{/delete__${note.id}__}" class="btn btn-danger bn-sm"><span class="glyphicon glyphicon-trash"> </span> delete </a>
+													 
+										<a href="/edit/1" th:href="@{/edit__${note.id}__}" class="btn btn-primary bn-sm"><span class="glyphicon glyphicon-pencil"> </span> edit </a>
+														
+										
+								</td>
+                            </tr>
+											
+                                           
+						</tbody>
+					</table>
+                                             </div>
+				
+				</div>	
+				
+	
+				<!--- footer -->
+                                
+				<!--- end of footer -->
+        </div> 
+      <footer style="margin-top: 150px">
+				<div class="text-center" >
+					<i class="white"><h4>created and designed by leyeseyi</h4></i>
+                                        <h4 class="white">Copyright &copy; 2018</h4>
+				</div>
+                                    </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script> 
+        $(document).ready(function(){
+            $("#notestable").DataTable({
+             
+            });
+            
+        });
+    </script> 
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/custom.js"></script>
+        <script th:src="@{js/jquery.dataTables.min.js}"></script>
+    <script th:src="@{js/dataTables.bootstrap.min.js}"></script>
+  </body>
+</html>

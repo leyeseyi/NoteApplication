@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Notes</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet"/>
+    
+    <link th:href="@{/css/jquery.dataTables.min.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/dataTables.bootstrap.min.css}" type="text/css" rel="stylesheet"/>
+    
+  </head>
+  <body class="home">
+		<section id="banner">
+			<div class="bg-color">
+			  <header id="header">
+				<div class="container">
+				  <div id="mySidenav" class="sidenav">
+                                      
+					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+					<div style="padding:10px;">
+                                                    <img class="img-responsive profile img-thumbnail userImage" height="200px" th:src="@{'/images/'+${profileImage.profileImage}}"/>
+                                                    <span><b><h4 class="white impact text-center" th:text="${message}"> </b> <span class="glyphicon glyphicon-user">  </span></h4> </span>
+                                                    </div>
+                                        <a href="" th:href="@{/document}"><p style="background:fod4e1;">NoteBook </p></a>
+                                 
+                                        <a href="/logout" th:href="@{/logout}" type="submit"> <span class="btn btn-danger col-md-12"> Logout </span> </a> 
+					
+					
+				  </div>
+				  <!-- Use any element to open the sidenav -->
+				  <span onclick="openNav()" class="pull-right menu-icon">☰</span>
+				</div>
+			  </header>
+			  
+			</div>
+		</section>
+		<div class="container-fluid col-md-12 row">
+
+				<!--- left panel -->
+				<div class="col-md-3 leftPanel length highlight"> 
+				
+					<span class="effect">
+
+						<div class="col-md-12 topAlign text-center white">
+							<h1 class="white"><span class="glyphicon glyphicon-trash"></span>Notes</h1>
+							<b class="white">Writing made digital</b>
+						</div>
+					
+					</span>
+				
+				</div>
+				<!---end of left panel -->
+	
+				<!--- right panel -->
+				<div class="col-md-6 topAlign1">
+                                                   
+						<h1 id="outlook" class="white"><b> e-Notes </b></h1>
+                                                <span><b><h4 class="white impact text-center" th:text="${success}"> </b> </h4> </span>
+						<hr>
+						
+				<span th:if="${check}==true"> <p class="alert alert-success">Note added successfully</p> </span>           
+					<form class="well well-sm shade" method='post' th:action="@{/create}" th:object="${newNote}">
+					<div class="">
+						<fieldset>
+							<legend class="center-block text-center"> Add a new note </legend> 
+				
+							<div class="form-group">
+								
+								<div class="input-group col-md-12">
+									<input type="text" th:field="*{title}" id="title" placeholder="title" class="form-control" required />
+									<span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class=" alert-danger"> </span>
+									<span class="help-block">Title of the note </span>
+								</div>
+							</div>
+							<div class="form-group">
+								
+								<div class="input-group col-md-12">
+									<textarea name="content" rows="5" class="form-control" placeholder="notes" th:field="*{content}"> </textarea>
+									<span class="help-block">Your content here </span>
+								</div>
+							</div>
+							<div class="form-group">
+								
+								<div class="input-group col-md-12">
+									<select th:field="*{category}" name="category" class="form-control">
+										<option value="" selected="selected" > Uncategorised </option>
+										<option value="Personal" th:selected="(${category}=='Personal')" >Personal</option>
+										<option value="Work" th:selected="(${category}=='Work')" >Work</option>
+										<option value="Family Affair" th:selected="(${scategory}=='Family')" >Family Affair</option>
+                                                                                <option value="Study" th:selected="(${scategory}=='Study')" >Study</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group col-md-offset-4 col-md-4">
+								<a ><input type="submit" class="btn btn-success btn-block" id="add" value="Add note" /> </a>
+							</div>
+                                                </fieldset>
+                        </div> 
+                            
+						</form>
+						
+						</div>
+					</div>
+
+				
+         
+        <footer>
+				<div class="text-center" style="position: absolute; bottom: 0; left:35%">
+					<i class="white"><h4>created and designed by leyeseyi</h4></i>
+                                        <h4 class="white">Copyright &copy; 2018</h4>
+				</div>
+                                    </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/custom.js"></script>
+  </body>
+</html>

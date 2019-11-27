@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
+
+    <!-- Bootstrap -->
+   <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet"/>
+    
+  </head>
+  <body id="login" style="padding:10% 0px;">
+      <section class="general">
+      <div class="container-fluid" style="position: relative"><!--CONTAINER-->
+		<div class="row">
+			<div class="col-md-3 leftPanel length highlight"> 
+				
+					<span class="effect">
+
+						<div class="col-md-12 topAlign text-center white">
+							<h1 class="white"><span class="glyphicon glyphicon-trash"></span>Notes</h1>
+							<b class="white">Writing made digital</b>
+						</div>
+					
+					</span>
+				
+				</div>
+        
+		<!--NAVNAR LOGO ENDS-->
+                            
+		<div class="col-md-6">
+			
+        <form method="post" action="/registerUser" th:action="@{/registerUser}" th:object="${user}" enctype="multipart/form-data">
+			
+            <div class="jumbotron">
+				
+							<legend class="center-block text-center"> Register </legend> 
+			
+                <div class="form-group">
+					<div class="input-group">
+						<label class="control-label" for="fname">First Name:</label>
+					</div>
+                    <div class="">
+                        <input type="text" th:field="*{firstname}" class="form-control" required/>		
+                        <span th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" class=" alert-danger"> </span>
+                    </div>
+                </div>
+                                    
+                <div class="form-group">
+					<div class="input-group">
+						<label class="control-label" for="lname">Last Name:</label>
+					</div>
+                    <div class="">
+                        <input type="text" th:field="*{lastname}"   class="form-control" required/>
+                        <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class=" alert-danger"> </span>
+                    </div>
+                </div>
+                                        
+                            
+                <div class="form-group">
+                    <div class="input-group">
+						<label class="control-label" for="email">Email:</label>
+					</div>
+                    <div class="">
+                        <input type="text" class="form-control" th:field="*{email}" required/>
+                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class=" alert-danger">invalid email  </span>
+                    </div>
+                </div>
+            
+				<div class="form-group">
+                    <div class="input-group">
+						<label class="control-label" for="phoneNumber">Phone Number:</label>
+					</div>
+                    <div class="">
+                        <input type="text" th:field="*{phoneNumber}" class="form-control" required/>
+                        <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class=" alert-danger"> </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+						<label class="control-label" for="fname">Date Of Birth:</label>
+					</div>
+                    <div class="">
+                        <input type="text" name="dateOfBirth" class="form-control" required/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+						<label class="control-label" for="fname">Profile Image:</label>
+					</div>
+                    <div class="">
+                        <input type="file"  class="form-control" name="profileimage" required/>
+                    </div>
+                </div>
+                                        
+                <div class="form-group">
+                    <div class="input-group">
+						<label class="control-label" for="fname">Password:</label>
+					</div>
+                    <div class="">
+                        <input type="password" class="form-control" th:field="*{password}" />
+                        <p th:if="${passwordMismatch}==true" class="alert alert-danger"> Ensure password matches</p>
+                    </div>	
+                </div>	
+                        
+				<div class="form-group">
+                    <div class="input-group">
+						<label class="control-label" for="fname">Confirm Password:</label>
+					</div>
+                    <div class="">
+                        <input type="password" class="form-control" name="cpassword"/>
+                                       
+                    </div>			
+                </div>	
+            
+				<div class="text-center button">
+                    <button class="btn btn-primary btn-block"><span class="next">Submit</button>  
+				</div>
+    
+            
+            </div>
+        </form>
+                        
+
+        
+				
+			</div>
+			
+		</div>
+	</div>
+      </section>
+      <footer style="margin-top: 150px">
+				<div class="text-center" >
+					<i class="white"><h4>created and designed by leyeseyi</h4></i>
+                                        <h4 class="white">Copyright &copy; 2018</h4>
+				</div>
+                                    </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    
+	<script src="js/jquery.js"></script>
+  </body>
+</html>
